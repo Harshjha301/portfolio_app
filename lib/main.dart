@@ -1,3 +1,4 @@
+import 'package:PortfolioApp/projects.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'nav_bar.dart';
@@ -62,6 +63,8 @@ class _MyHomePageState extends State<MyHomePage> {
               Center(
                 child: Column(
                   children: [
+                    const SizedBox(height: 10,),
+                    const Divider(thickness: 5,),
                     GestureDetector(
                       onTap: () {
                         Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -195,12 +198,52 @@ class _MyHomePageState extends State<MyHomePage> {
                                     ),
                                   ),
                                 ],
-                              ),
+                              )
                             ],
                           ),
                         )
                       ],
                     ),
+                    const SizedBox(height: 20,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) {
+                              return const Projects();
+                            }));
+                          },
+                          style: ElevatedButton.styleFrom(backgroundColor: Colors.blueGrey),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: const [
+                              Icon(Icons.computer_outlined),
+                              SizedBox(width: 10.0),
+                              Text("Projects"),
+                            ],
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: () async {
+                            Uri url = Uri.parse(
+                                'https://drive.google.com/drive/folders/1ufy_zotJ564MNdFgmCxLeXNo5RtmtHbw?usp=sharing');
+                            await launchUrl(url,
+                                mode: LaunchMode.externalApplication);
+                          },
+                          style: ElevatedButton.styleFrom(backgroundColor: Colors.blueGrey),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: const [
+                              Icon(Icons.newspaper),
+                              SizedBox(width: 10.0),
+                              Text("Certificates"),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10,),
                     const Divider(thickness: 1,),
                     const SizedBox(height: 10,),
                     const Text(
@@ -264,7 +307,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ),
                       ],
-                    )
+                    ),
+                    const SizedBox(height: 10,),
+                    const Divider(thickness: 5,),
+                    const SizedBox(height: 10,)
                   ],
                 ),
               ),
